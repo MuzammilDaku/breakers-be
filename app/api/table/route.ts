@@ -1,6 +1,6 @@
 import dbConn from "@/lib/dbConn";
 import mongoose from "mongoose";
-import { jsonResponse } from "../route";
+import { jsonResponse } from "@/lib/jsonResponse";
 
 let Table;
 if (mongoose.models.Table) {

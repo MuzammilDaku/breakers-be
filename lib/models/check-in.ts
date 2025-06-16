@@ -27,4 +27,4 @@ const CheckInTableSchema: Schema = new Schema<CheckInTableInterface>(
     { timestamps: true }
 );
 
-export const CheckInTable = mongoose.model("CheckInTable",CheckInTableSchema);
+export const CheckInTable = mongoose.models.CheckInTable || mongoose.model("CheckInTable",CheckInTableSchema);

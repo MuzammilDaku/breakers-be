@@ -15,4 +15,4 @@ const TableSchema: Schema = new Schema(
     { timestamps: true }
 );
 
-export const Table = mongoose.model("Table",TableSchema);
+export const Table = mongoose.models.Table || mongoose.model("Table", TableSchema);

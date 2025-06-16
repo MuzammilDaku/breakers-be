@@ -1,6 +1,6 @@
 import { IUser, User } from '@/lib/models/users';
 import dbConn from '@/lib/dbConn';
-import { jsonResponse } from '@/app/route';
+import { jsonResponse } from "@/lib/jsonResponse";
 
 export const POST = async (req: Request) => {
     await dbConn();

@@ -1,6 +1,3 @@
-import dbConn from "@/lib/dbConn";
-import { User } from "@/lib/models/users";
-
 export function jsonResponse(data: any, status: number ) {
     return new Response(JSON.stringify(data), {
       status,
@@ -12,9 +9,3 @@ export function jsonResponse(data: any, status: number ) {
       },
     });
   }
-
-export async function GET() {
-  await dbConn(); // Ensure the database connection is established
-  const users = await User.find(); // Assuming User is imported from your models
-  return jsonResponse(users, 200);
-}

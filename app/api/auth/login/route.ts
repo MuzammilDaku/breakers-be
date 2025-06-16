@@ -1,4 +1,4 @@
-import { jsonResponse } from "@/app/route";
+import { jsonResponse } from "@/lib/jsonResponse";
 import dbConn from "@/lib/dbConn";
 import { User } from "@/lib/models/users";
 

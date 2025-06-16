@@ -1,6 +1,6 @@
 import dbConn from "@/lib/dbConn"
+import { jsonResponse } from "@/lib/jsonResponse";
 import {  CheckInTableInterface } from "@/lib/models/check-in";
-import { jsonResponse } from "../route";
 import mongoose from "mongoose";
 let CheckInTable;
 if (mongoose.models.CheckInTable) {
