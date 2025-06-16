@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { User } from './users';
 
 export interface ITable extends Document {
     name: string;
@@ -10,7 +11,7 @@ const TableSchema: Schema = new mongoose.Schema(
     {
         name: { type: String, required: true },
         minute_rate: { type: Number, required: true, min: 0 },
-        created_by: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true }
+        created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true }
     }
 );
 

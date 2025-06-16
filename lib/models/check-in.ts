@@ -1,4 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { User } from './users';
+import { Table } from './table';
 
 export interface CheckInTableInterface extends Document {
     created_by: mongoose.Types.ObjectId;
@@ -14,8 +16,8 @@ export interface CheckInTableInterface extends Document {
 
 const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
     {
-        created_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-        table_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Table', required: true },
+        created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true },
+        table_id: { type: mongoose.Schema.Types.ObjectId, ref: Table, required: true },
         total_bill:{type:Number,required:true},
         status:{type:String,enum:["paid","unpaid"],default:"unpaid"},
         customer_name:{type:String,required:true},
