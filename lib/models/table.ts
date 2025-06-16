@@ -6,7 +6,7 @@ export interface ITable extends Document {
     created_by: mongoose.Types.ObjectId;
 }
 
-const TableSchema: Schema = new Schema(
+const TableSchema: Schema = new mongoose.Schema(
     {
         name: { type: String, required: true, },
         minute_rate: { type: Number, required: true, min: 0 },

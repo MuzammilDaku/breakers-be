@@ -12,7 +12,7 @@ export interface CheckInTableInterface extends Document {
     date?:any
 }
 
-const CheckInTableSchema: Schema = new Schema<CheckInTableInterface>(
+const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
     {
         created_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
         table_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Table', required: true },
@@ -23,7 +23,8 @@ const CheckInTableSchema: Schema = new Schema<CheckInTableInterface>(
         total_frame:{type:Number,required:true},
         received_amount:{type:Number,default:0},
         date:{type:Date,default:new Date()}
-    }
+    },
+    { timestamps: true }
 );
 
 export const CheckInTable = mongoose.models.CheckInTable || mongoose.model("CheckInTable",CheckInTableSchema);
