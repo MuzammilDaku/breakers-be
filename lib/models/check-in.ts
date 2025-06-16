@@ -23,8 +23,7 @@ const CheckInTableSchema: Schema = new Schema<CheckInTableInterface>(
         total_frame:{type:Number,required:true},
         received_amount:{type:Number,default:0},
         date:{type:Date,default:new Date()}
-    },
-    { timestamps: true }
+    }
 );
 
 export const CheckInTable = mongoose.models.CheckInTable || mongoose.model("CheckInTable",CheckInTableSchema);
