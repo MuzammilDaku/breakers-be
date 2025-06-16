@@ -8,9 +8,9 @@ export interface ITable extends Document {
 
 const TableSchema: Schema = new mongoose.Schema(
     {
-        name: { type: String, required: true, },
+        name: { type: String, required: true },
         minute_rate: { type: Number, required: true, min: 0 },
-        created_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }   
+        created_by: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true }
     }
 );
 
