@@ -8,7 +8,7 @@ if (mongoose.models.CheckInTable) {
 } else {
     // Import or define your TableSchema here
     const {CheckInTableSchema} = require("@/lib/models/check-in")
-    CheckInTable = mongoose.model("Table", CheckInTableSchema);
+    CheckInTable = mongoose.model("CheckInTable", CheckInTableSchema);
 }
 export const POST = async (req: Request) => {
     await dbConn();
