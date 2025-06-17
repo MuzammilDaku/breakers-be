@@ -21,11 +21,25 @@ export async function POST(req: Request) {
             return jsonResponse({ error: "User not found" }, 200);
         }
 
-        if(user) {
+        if (user) {
             const isPasswordValid = user.password === body.password; // Replace with a proper hash comparison in production
             if (!isPasswordValid) {
                 return jsonResponse({ error: "Invalid password" }, 200);
             }
+        }
+
+        if (user.status === "expired") {
+            return jsonResponse({ error: "Registeration Expired!" }, 200)
+        }
+
+        const userDate = new Date(user.date ?? user.get('date'));
+        const now = new Date();
+        const diffTime = Math.abs(now.getTime() - userDate.getTime());
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays > 30) {
+            await User.findByIdAndUpdate(user._id, { $set: { status: "expired" } });
+            return jsonResponse({ error: "Registeration Expired!" }, 200)
         }
 
         return jsonResponse(user, 200);
