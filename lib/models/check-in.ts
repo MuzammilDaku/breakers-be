@@ -7,7 +7,7 @@ export interface CheckInTableInterface extends Document {
     total_frame:number;
     status: "paid" | "unpaid";
     total_bill:number;
-    table_id:mongoose.Types.ObjectId;
+    table_id:string;
     customer_name:string;
     customer_phone:string;
     received_amount:number;
@@ -18,7 +18,7 @@ export interface CheckInTableInterface extends Document {
 const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
     {
         created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true },
-        table_id: { type: mongoose.Schema.Types.ObjectId, ref: Table, required: true },
+        table_id: { type: String, ref: Table, required: true },
         total_bill: { type: Number, required: true },
         status: { type: String, enum: ["paid", "unpaid"], default: "unpaid" },
         customer_name: { type: String, required: true },
