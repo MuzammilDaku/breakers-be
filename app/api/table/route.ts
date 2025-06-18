@@ -23,7 +23,7 @@ export const POST = async (request: Request) => {
         }
 
         const body = await request.json();
-        const { name, minute_rate, created_by } = body;
+        const { name, minute_rate, created_by , _id , century_rate ,one_red_rate ,ten_red_rate,six_red_rate } = body;
 
         if (!name || !minute_rate || !created_by) {
             return new Response(JSON.stringify({ error: "All fields are required" }), {
@@ -32,7 +32,7 @@ export const POST = async (request: Request) => {
             });
         }
 
-        const newTable = await Table.create({ name, minute_rate, created_by });
+        const newTable = await Table.create(body);
 
         return new Response(JSON.stringify(newTable), {
             status: 201,
