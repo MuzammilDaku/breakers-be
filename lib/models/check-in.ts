@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, Mongoose } from 'mongoose';
 import { User } from './users';
 import { Table } from './table';
 
@@ -11,20 +11,25 @@ export interface CheckInTableInterface extends Document {
     customer_name:string;
     customer_phone:string;
     received_amount:number;
-    date?:any
+    date?:any;
+    _id:string;
 }
 
 const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
     {
         created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true },
         table_id: { type: mongoose.Schema.Types.ObjectId, ref: Table, required: true },
-        total_bill:{type:Number,required:true},
-        status:{type:String,enum:["paid","unpaid"],default:"unpaid"},
-        customer_name:{type:String,required:true},
-        customer_phone:{type:String,required:true},
-        total_frame:{type:Number,required:true},
-        received_amount:{type:Number,default:0},
-        date:{type:Date,default:new Date()}
+        total_bill: { type: Number, required: true },
+        status: { type: String, enum: ["paid", "unpaid"], default: "unpaid" },
+        customer_name: { type: String, required: true },
+        customer_phone: { type: String, required: true },
+        total_frame: { type: Number, required: true },
+        received_amount: { type: Number, default: 0 },
+        date: { type: Date, default: new Date() },
+        _id: { 
+            type: String, 
+            default: () => new mongoose.Types.ObjectId().toString() 
+        }
     },
     { timestamps: true }
 );

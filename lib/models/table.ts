@@ -9,6 +9,7 @@ export interface ITable extends Document {
     ten_red_rate:Number;
     century_rate:Number;
     one_red_rate:Number
+    _id:string
 }
 
 const TableSchema: Schema = new mongoose.Schema<ITable>(
@@ -20,6 +21,7 @@ const TableSchema: Schema = new mongoose.Schema<ITable>(
         one_red_rate:{type:String,required:true},
         ten_red_rate:{type:String,required:true},
         century_rate:{type:String,required:true},
+        _id:{type:String,required:true}
     }
 );
 
