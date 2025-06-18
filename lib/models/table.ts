@@ -3,15 +3,23 @@ import { User } from './users';
 
 export interface ITable extends Document {
     name: string;
-    minute_rate: number;
+    minute_rate?: number;
     created_by: mongoose.Types.ObjectId;
+    six_red_rate:Number;
+    ten_red_rate:Number;
+    century_rate:Number;
+    one_red_rate:Number
 }
 
-const TableSchema: Schema = new mongoose.Schema(
+const TableSchema: Schema = new mongoose.Schema<ITable>(
     {
         name: { type: String, required: true },
-        minute_rate: { type: Number, required: true, min: 0 },
-        created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true }
+        minute_rate: { type: Number,required:true},
+        created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true },
+        six_red_rate:{type:String,required:true},
+        one_red_rate:{type:String,required:true},
+        ten_red_rate:{type:String,required:true},
+        century_rate:{type:String,required:true},
     }
 );
 
