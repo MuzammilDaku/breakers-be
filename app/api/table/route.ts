@@ -47,13 +47,65 @@ export const POST = async (request: Request) => {
     }
 }
 
-export const GET = async (req:Request) => {
+export const GET = async (req: Request) => {
     await dbConn();
     try {
         const tables = await Table.find();
-        return jsonResponse(tables, 200)
+        return jsonResponse(tables, 200);
     } catch (error) {
-        console.log(error)
-        return jsonResponse({ error: "Internal Server Error" }, 200)
+        console.log(error);
+        return jsonResponse({ error: "Internal Server Error" }, 200);
     }
-}
+};
+
+export const PUT = async (request: Request) => {
+    await dbConn();
+    try {
+        const body = await request.json();
+        const { _id, ...updateData } = body;
+
+        if (!_id) {
+            return jsonResponse({ error: "_id is required" }, 200);
+        }
+
+        Object.keys(updateData).forEach(key => {
+            if (updateData[key] === undefined) {
+                delete updateData[key];
+            }
+        });
+
+        const updatedTable = await Table.findByIdAndUpdate(_id, updateData, { new: true });
+
+        if (!updatedTable) {
+            return jsonResponse({ error: "Table not found" }, 200);
+        }
+
+        return jsonResponse(updatedTable, 200);
+    } catch (error) {
+        console.error("Error updating table:", error);
+        return jsonResponse({ error: "Internal server error" }, 200);
+    }
+};
+
+export const DELETE = async (request: Request) => {
+    await dbConn();
+    try {
+        const body = await request.json();
+        const { _id } = body;
+
+        if (!_id) {
+            return jsonResponse({ error: "_id is required" }, 200);
+        }
+
+        const deletedTable = await Table.findByIdAndDelete(_id);
+
+        if (!deletedTable) {
+            return jsonResponse({ error: "Table not found" }, 200);
+        }
+
+        return jsonResponse({ message: "Table deleted successfully" }, 200);
+    } catch (error) {
+        console.error("Error deleting table:", error);
+        return jsonResponse({ error: "Internal server error" }, 200);
+    }
+};
