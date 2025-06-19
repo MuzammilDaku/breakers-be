@@ -80,7 +80,7 @@ export const PUT = async (request: Request) => {
             return jsonResponse({ error: "Table not found" }, 200);
         }
 
-        return jsonResponse(updatedTable, 200);
+        return jsonResponse(updatedTable, 201);
     } catch (error) {
         console.error("Error updating table:", error);
         return jsonResponse({ error: "Internal server error" }, 200);
@@ -103,7 +103,7 @@ export const DELETE = async (request: Request) => {
             return jsonResponse({ error: "Table not found" }, 200);
         }
 
-        return jsonResponse({ message: "Table deleted successfully" }, 200);
+        return jsonResponse({ message: "Table deleted successfully" }, 201);
     } catch (error) {
         console.error("Error deleting table:", error);
         return jsonResponse({ error: "Internal server error" }, 200);
