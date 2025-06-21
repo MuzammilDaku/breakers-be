@@ -23,9 +23,9 @@ export const POST = async (request: Request) => {
         }
 
         const body = await request.json();
-        const { name, minute_rate, created_by , _id , century_rate ,one_red_rate ,ten_red_rate,six_red_rate } = body;
+        const { name, created_by , _id , century_rate ,one_red_rate ,ten_red_rate,six_red_rate , fifteen_red_rate } = body;
 
-        if (!name || !minute_rate || !created_by) {
+        if (!name || !created_by || !century_rate || !one_red_rate || !six_red_rate || !ten_red_rate ||!fifteen_red_rate) {
             return new Response(JSON.stringify({ error: "All fields are required" }), {
                 status: 200,
                 headers: { "Content-Type": "application/json" },
