@@ -50,7 +50,15 @@ export const POST = async (request: Request) => {
 export const GET = async (req: Request) => {
     await dbConn();
     try {
-        const tables = await Table.find();
+        const { searchParams } = new URL(req.url);
+        const query: any = {};
+
+        // Example: filter by name if provided in query string
+        if (searchParams.has("user_id")) {
+            query.id = searchParams.get("user_id");
+        }
+
+        const tables = await Table.find({_id:query.id});
         return jsonResponse(tables, 200);
     } catch (error) {
         console.log(error);
