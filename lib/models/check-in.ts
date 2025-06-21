@@ -13,6 +13,7 @@ export interface CheckInTableInterface extends Document {
     received_amount:number;
     date?:any;
     _id:string;
+    type:string
 }
 
 const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
@@ -29,7 +30,8 @@ const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
         _id: { 
             type: String, 
             default: () => new mongoose.Types.ObjectId().toString() 
-        }
+        },
+        type:{type:String,required:true}
     },
     { timestamps: true }
 );
