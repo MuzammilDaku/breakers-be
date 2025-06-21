@@ -58,7 +58,7 @@ export const GET = async (req: Request) => {
             query.id = searchParams.get("user_id");
         }
 
-        const tables = await Table.find({_id:query.id});
+        const tables = await Table.find({created_by:query.id});
         return jsonResponse(tables, 200);
     } catch (error) {
         console.log(error);
