@@ -7,7 +7,8 @@ export interface ITable extends Document {
     six_red_rate:Number;
     ten_red_rate:Number;
     century_rate:Number;
-    one_red_rate:Number
+    one_red_rate:Number;
+    fifteen_red_rate:Number;
     _id:string
 }
 
@@ -15,10 +16,11 @@ const TableSchema: Schema = new mongoose.Schema<ITable>(
     {
         name: { type: String, required: true },
         created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true },
-        six_red_rate:{type:String,required:true},
-        one_red_rate:{type:String,required:true},
-        ten_red_rate:{type:String,required:true},
-        century_rate:{type:String,required:true},
+        six_red_rate:{type:Number,required:true},
+        one_red_rate:{type:Number,required:true},
+        ten_red_rate:{type:Number,required:true},
+        century_rate:{type:Number,required:true},
+        fifteen_red_rate:{type:Number,required:true},
         _id:{type:String,required:true}
     }
 );
