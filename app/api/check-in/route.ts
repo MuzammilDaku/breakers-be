@@ -7,9 +7,8 @@ export const POST = async (req: Request) => {
     await dbConn();
     try {
         const body = await req.json() as CheckInTableInterface;
-        const { created_by, total_bill, table_id, total_frame, customer_name, customer_phone, status } = body;
+        const { created_by, total_bill, table_id, total_frame, customer_name, customer_phone } = body;
         if (!customer_name || !customer_phone || !total_frame || !created_by || !total_bill || !table_id) {
-            console.error("requiredd files", customer_name, customer_phone, total_bill, total_frame, created_by, table_id, status)
             return jsonResponse({ error: "All fields are required" }, 200)
         }
         const checkIn = await CheckInTable.create(body);

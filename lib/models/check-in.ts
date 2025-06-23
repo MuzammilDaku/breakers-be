@@ -5,7 +5,6 @@ import { Table } from './table';
 export interface CheckInTableInterface extends Document {
     created_by: mongoose.Types.ObjectId;
     total_frame:number;
-    status: "paid" | "unpaid";
     total_bill:number;
     table_id:string;
     customer_name:string;
@@ -13,7 +12,9 @@ export interface CheckInTableInterface extends Document {
     received_amount:number;
     date?:any;
     _id:string;
-    type:string
+    types:string
+    time_played:string;
+    frames:string
 }
 
 const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
@@ -21,7 +22,6 @@ const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
         created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true },
         table_id: { type: String, ref: Table, required: true },
         total_bill: { type: Number, required: true },
-        status: { type: String, enum: ["paid", "unpaid"], default: "unpaid" },
         customer_name: { type: String, required: true },
         customer_phone: { type: String, required: true },
         total_frame: { type: Number, required: true },
@@ -31,7 +31,11 @@ const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
             type: String, 
             default: () => new mongoose.Types.ObjectId().toString() 
         },
-        type:{type:String,required:true}
+        types:{type:String,required:true},
+        time_played:{type:String,required:true},
+        frames:{type:String,required:true},
+
+
     },
     { timestamps: true }
 );
