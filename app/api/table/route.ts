@@ -23,9 +23,9 @@ export const POST = async (request: Request) => {
         }
 
         const body = await request.json();
-        const { name, created_by , _id , century_rate ,one_red_rate ,ten_red_rate,six_red_rate , fifteen_red_rate } = body;
+        const { name, created_by, _id, century_rate, one_red_rate, ten_red_rate, six_red_rate, fifteen_red_rate } = body;
 
-        if (!name || !created_by || !century_rate || !one_red_rate || !six_red_rate || !ten_red_rate ||!fifteen_red_rate) {
+        if (!name || !created_by || !century_rate || !one_red_rate || !six_red_rate || !ten_red_rate || !fifteen_red_rate) {
             return new Response(JSON.stringify({ error: "All fields are required" }), {
                 status: 200,
                 headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ export const GET = async (req: Request) => {
             query.id = searchParams.get("user_id");
         }
 
-        const tables = await Table.find({created_by:query.id});
+        const tables = await Table.find({ created_by: query.id });
         return jsonResponse(tables, 200);
     } catch (error) {
         console.log(error);
@@ -95,17 +95,22 @@ export const PUT = async (request: Request) => {
     }
 };
 
-export const DELETE = async (request: Request) => {
+export const DELETE = async (req: Request) => {
     await dbConn();
     try {
-        const body = await request.json();
-        const { _id } = body;
+        const { searchParams } = new URL(req.url);
 
-        if (!_id) {
+        const query: any = {};
+
+        if (searchParams.has("user_id")) {
+            query.id = searchParams.get("user_id");
+        }
+        
+        if (!query) {
             return jsonResponse({ error: "_id is required" }, 200);
         }
 
-        const deletedTable = await Table.findByIdAndDelete(_id);
+        const deletedTable = await Table.findByIdAndDelete(query.id);
 
         if (!deletedTable) {
             return jsonResponse({ error: "Table not found" }, 200);
