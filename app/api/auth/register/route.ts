@@ -2,12 +2,47 @@ import { IUser, User } from '@/lib/models/users';
 import dbConn from '@/lib/dbConn';
 import { jsonResponse } from "@/lib/jsonResponse";
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Auth
+ *     description: Authentication related endpoints
+ * /api/auth/register:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     description: Create New User
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               phone:
+ *                 type: string
+ *                 example: "1234567890"
+ *               name:
+ *                 type: string
+ *                 example: "John Dow"
+ *               password:
+ *                 type: string
+ *                 example: "yourpassword"
+ *             required:
+ *               - phone
+ *               - password
+ *               - name
+ *     responses:
+ *       201:
+ *         description: User
+ */
+
 export const POST = async (req: Request) => {
     await dbConn();
 
     try {
         const body: IUser = await req.json();
-        console.log('Registration request body:', body);
+        // console.log('Registration request body:', body);
         if (!body.name || !body.phone || !body.password) {
             return jsonResponse({ error: 'Name, phone, and password are required' }, 400);
         }
@@ -20,8 +55,8 @@ export const POST = async (req: Request) => {
         const newUser = new User({
             name: body.name,
             phone: body.phone,
-            password: body.password, // In a real application, you should hash the password before saving
-            role: body.role || 'user', // Default role is 'user'
+            password: body.password, 
+            role: body.role || 'user',
         });
         await newUser.save();
         // Respond with the created user

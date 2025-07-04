@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "mongoose": "^8.15.2",
-    "next": "15.3.3"
+    "next": "15.3.3",
+    "next-swagger-doc": "^0.4.1",
+    "swagger-ui-react": "^5.26.0"
   },
   "devDependencies": {
     "@types/node": "^20",
