@@ -42,3 +42,31 @@ export const GET = async (req: Request) => {
         return jsonResponse({ error: "Internal Server Error" }, 200);
     }
 };
+
+export const DELETE = async (req: Request) => {
+    await dbConn();
+    try {
+        const { searchParams } = new URL(req.url);
+
+        const query: any = {};
+
+        if (searchParams.has("id")) {
+            query.id = searchParams.get("id");
+        }
+        
+        if (!query) {
+            return jsonResponse({ error: "_id is required" }, 200);
+        }
+
+        const deletedTable = await InUseTable.findByIdAndDelete(query.id);
+
+        if (!deletedTable) {
+            return jsonResponse({ error: "Table not found" }, 200);
+        }
+
+        return jsonResponse({ message: "Table deleted successfully" }, 201);
+    } catch (error) {
+        console.error("Error deleting table:", error);
+        return jsonResponse({ error: "Internal server error" }, 200);
+    }
+};
