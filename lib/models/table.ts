@@ -12,7 +12,7 @@ export interface ITable extends Document {
     _id:string
 }
 
-const TableSchema: Schema = new mongoose.Schema<ITable>(
+export const TableSchema: Schema = new mongoose.Schema<ITable>(
     {
         name: { type: String, required: true },
         created_by: { type: mongoose.Schema.Types.ObjectId, ref: User, required: true },

@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 export interface IUser {
     name: string;
-    date:Date
+    date:Date;
+    _id:string;
 }
 
 const customerSchema = new mongoose.Schema<IUser>({
@@ -12,7 +13,11 @@ const customerSchema = new mongoose.Schema<IUser>({
     },
     date:{
         type: Date,
-        default: Date.now
+        required:true
+    },
+    _id:{
+        type:String,
+        required:true
     }
 });
 
