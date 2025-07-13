@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document, Mongoose } from 'mongoose';
 import { User } from './users';
-import { Table } from './table';
 
 export interface CheckInTableInterface extends Document {
     created_by: mongoose.Types.ObjectId;
@@ -12,8 +11,8 @@ export interface CheckInTableInterface extends Document {
     game_type:string[];
     game_mode:string[]
     time_played?:number;
-    game_names:string[];
-    table_names:string[]
+    table_names:string[];
+    bill_type:string;
 }
 
 const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
@@ -27,10 +26,11 @@ const CheckInTableSchema: Schema = new mongoose.Schema<CheckInTableInterface>(
             type: String, 
             default: () => new mongoose.Types.ObjectId().toString() 
         },
-        game_type:{type:[String],required:true},
-        game_mode:{type:[String],required:true},
-        table_names:{type:[String],required:true},
+        game_type:{type:[String]},
+        game_mode:{type:[String]},
+        table_names:{type:[String]},
         time_played:{type:Number},
+        bill_type:{type:String,default:"automatic"}
     }
 );
 
