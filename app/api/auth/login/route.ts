@@ -7,36 +7,36 @@ interface LoginBody {
     password: string;
 };
 
-/**
- * @swagger
- * tags:
- *   - name: Auth
- *     description: Authentication related endpoints
- * /api/auth/login:
- *   post:
- *     tags:
- *       - Auth
- *     description: Returns The User
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               phone:
- *                 type: string
- *                 example: "1234567890"
- *               password:
- *                 type: string
- *                 example: "yourpassword"
- *             required:
- *               - phone
- *               - password
- *     responses:
- *       200:
- *         description: User
- */
+// /**
+//  * @swagger
+//  * tags:
+//  *   - name: Auth
+//  *     description: Authentication related endpoints
+//  * /api/auth/login:
+//  *   post:
+//  *     tags:
+//  *       - Auth
+//  *     description: Returns The User
+//  *     requestBody:
+//  *       required: true
+//  *       content:
+//  *         application/json:
+//  *           schema:
+//  *             type: object
+//  *             properties:
+//  *               phone:
+//  *                 type: string
+//  *                 example: "1234567890"
+//  *               password:
+//  *                 type: string
+//  *                 example: "yourpassword"
+//  *             required:
+//  *               - phone
+//  *               - password
+//  *     responses:
+//  *       200:
+//  *         description: User
+//  */
 
 export async function POST(req: Request) {
     await dbConn();

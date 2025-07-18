@@ -2,40 +2,40 @@ import { IUser, User } from '@/lib/models/users';
 import dbConn from '@/lib/dbConn';
 import { jsonResponse } from "@/lib/jsonResponse";
 
-/**
- * @swagger
- * tags:
- *   - name: Auth
- *     description: Authentication related endpoints
- * /api/auth/register:
- *   post:
- *     tags:
- *       - Auth
- *     description: Create New User
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               phone:
- *                 type: string
- *                 example: "1234567890"
- *               name:
- *                 type: string
- *                 example: "John Dow"
- *               password:
- *                 type: string
- *                 example: "yourpassword"
- *             required:
- *               - phone
- *               - password
- *               - name
- *     responses:
- *       201:
- *         description: User
- */
+// /**
+//  * @swagger
+//  * tags:
+//  *   - name: Auth
+//  *     description: Authentication related endpoints
+//  * /api/auth/register:
+//  *   post:
+//  *     tags:
+//  *       - Auth
+//  *     description: Create New User
+//  *     requestBody:
+//  *       required: true
+//  *       content:
+//  *         application/json:
+//  *           schema:
+//  *             type: object
+//  *             properties:
+//  *               phone:
+//  *                 type: string
+//  *                 example: "1234567890"
+//  *               name:
+//  *                 type: string
+//  *                 example: "John Dow"
+//  *               password:
+//  *                 type: string
+//  *                 example: "yourpassword"
+//  *             required:
+//  *               - phone
+//  *               - password
+//  *               - name
+//  *     responses:
+//  *       201:
+//  *         description: User
+//  */
 
 export const POST = async (req: Request) => {
     await dbConn();
