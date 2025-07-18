@@ -3,14 +3,14 @@ import mongoose from "mongoose";
 
 export interface UserBillTable {
   _id: string;
-  inUseTable: any;
-  winner: string;
+  inUseTable?: any;
+  winner?: string;
   loser: string;
   total_bill: number | undefined;
   total_frame?: number;
   total_time?: number;
   date?: string;
-  game_type: string;
+  game_type?: string;
   status?: string;
   created_by?:any
 }
@@ -22,11 +22,11 @@ const customerSchema = new mongoose.Schema<UserBillTable>({
    },
    inUseTable:{
     type:{},
-    required:true
+    // required:true
    },
    winner:{
     type:String,
-    required:true
+    // required:true
    },
    loser:{
     type:String,
@@ -42,7 +42,7 @@ const customerSchema = new mongoose.Schema<UserBillTable>({
    },
    game_type:{
     type:String,
-    required:true
+    // required:true
    },
    status:{
     type:String,

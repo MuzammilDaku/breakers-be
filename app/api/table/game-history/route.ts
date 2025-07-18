@@ -16,6 +16,7 @@ export const POST = async (req: Request) => {
         return jsonResponse(gameHistory, 201)
 
     } catch (error) {
+        console.log(error)
         return jsonResponse({ error: "Internal Server Error" }, 200)
     }
 }

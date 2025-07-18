@@ -68,7 +68,7 @@ export async function POST(req: Request) {
         const diffTime = Math.abs(now.getTime() - userDate.getTime());
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-        if (diffDays > 30) {
+        if (diffDays >= 30) {
             await User.findByIdAndUpdate(user._id, { $set: { status: "expired" } });
             return jsonResponse({ error: "Registeration Expired!" }, 200)
         }
