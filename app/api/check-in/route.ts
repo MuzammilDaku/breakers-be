@@ -2,69 +2,69 @@ import dbConn from "@/lib/dbConn"
 import { jsonResponse } from "@/lib/jsonResponse";
 import { CheckInTable, CheckInTableInterface } from "@/lib/models/check-in";
 
-/**
- * @swagger
- * tags:
- *   - name: Bills
- *     description: Bills History Related APIs
- * /api/check-in:
- *   post:
- *     tags:
- *       - Bills
- *     description: Add History of Bill
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               created_by:
- *                 type: string
- *                 example: "user123"
- *               total_bill:
- *                 type: number
- *                 example: 500
- *               table_id:
- *                 type: string
- *                 example: "table1"
- *               total_frame:
- *                 type: number
- *                 example: 3
- *               customer_name:
- *                 type: string
- *                 example: "John Doe"
- *               customer_phone:
- *                 type: string
- *                 example: "1234567890"
- *             required:
- *               - created_by
- *               - total_bill
- *               - table_id
- *               - total_frame
- *               - customer_name
- *               - customer_phone
- *     responses:
- *       201:
- *         description: Bill created successfully
- *       200:
- *         description: Validation error or server error
- *   get:
- *     tags:
- *       - Bills
- *     description: Get Bills by user_id
- *     parameters:
- *       - in: query
- *         name: user_id
- *         schema:
- *           type: string
- *           format: objectid
- *         required: true
- *         description: Filter bills by user_id
- *     responses:
- *       200:
- *         description: List of bills
- */
+// /**
+//  * @swagger
+//  * tags:
+//  *   - name: Bills
+//  *     description: Bills History Related APIs
+//  * /api/check-in:
+//  *   post:
+//  *     tags:
+//  *       - Bills
+//  *     description: Add History of Bill
+//  *     requestBody:
+//  *       required: true
+//  *       content:
+//  *         application/json:
+//  *           schema:
+//  *             type: object
+//  *             properties:
+//  *               created_by:
+//  *                 type: string
+//  *                 example: "user123"
+//  *               total_bill:
+//  *                 type: number
+//  *                 example: 500
+//  *               table_id:
+//  *                 type: string
+//  *                 example: "table1"
+//  *               total_frame:
+//  *                 type: number
+//  *                 example: 3
+//  *               customer_name:
+//  *                 type: string
+//  *                 example: "John Doe"
+//  *               customer_phone:
+//  *                 type: string
+//  *                 example: "1234567890"
+//  *             required:
+//  *               - created_by
+//  *               - total_bill
+//  *               - table_id
+//  *               - total_frame
+//  *               - customer_name
+//  *               - customer_phone
+//  *     responses:
+//  *       201:
+//  *         description: Bill created successfully
+//  *       200:
+//  *         description: Validation error or server error
+//  *   get:
+//  *     tags:
+//  *       - Bills
+//  *     description: Get Bills by user_id
+//  *     parameters:
+//  *       - in: query
+//  *         name: user_id
+//  *         schema:
+//  *           type: string
+//  *           format: objectid
+//  *         required: true
+//  *         description: Filter bills by user_id
+//  *     responses:
+//  *       200:
+//  *         description: List of bills
+//  */
 
 export const POST = async (req: Request) => {
     await dbConn();
